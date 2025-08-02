@@ -1,5 +1,5 @@
 {
-  "name": "@microlink/react-json-view",
+  "name": "@smoosense/react-json-view",
   "description": "Interactive react component for displaying javascript arrays and JSON objects.",
   "homepage": "https://github.com/microlinkhq/react-json-view",
   "version": "1.27.0",
@@ -315,6 +315,9 @@
   "peerDependencies": {
     "react": ">= 15",
     "react-dom": ">= 15"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "simple-git-hooks": {
     "commit-msg": "npx commitlint --edit",
