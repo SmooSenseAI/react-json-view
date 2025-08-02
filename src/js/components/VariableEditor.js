@@ -338,7 +338,7 @@ class VariableEditor extends React.PureComponent {
       if (BigNumber && parsedInput.type === 'bigNumber') {
         new_value = new BigNumber(new_value)
       }
-    } 
+    }
     this.setState({
       editMode: false
     })

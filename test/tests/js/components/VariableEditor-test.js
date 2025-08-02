@@ -446,10 +446,10 @@ describe('<VariableEditor />', function () {
         }}
       />
     )
-    
+
     // Check that comma exists
     expect(wrapper.find('span').someWhere(node => node.text() === ',')).to.be.true
-    
+
     // Check that tools (edit icon) exist
     const editIcon = wrapper.find('.click-to-edit-icon')
     expect(editIcon).to.have.length(1)

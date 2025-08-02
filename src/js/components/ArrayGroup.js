@@ -44,6 +44,7 @@ export default class extends React.PureComponent {
     const {
       src,
       groupArraysAfterLength,
+      numberOfArrayGroupsToDisplay,
       depth,
       name,
       theme,
@@ -53,22 +54,24 @@ export default class extends React.PureComponent {
       ...rest
     } = this.props
 
-    let object_padding_left = 0
+    let objectPaddingLeft = 0
 
-    const array_group_padding_left = this.props.indentWidth * SINGLE_INDENT
+    const arrayGroupPaddingLeft = this.props.indentWidth * SINGLE_INDENT
 
     if (!jsvRoot) {
-      object_padding_left = this.props.indentWidth * SINGLE_INDENT
+      objectPaddingLeft = this.props.indentWidth * SINGLE_INDENT
     }
 
     const size = groupArraysAfterLength
     const groups = Math.ceil(src.length / size)
+    const displayGroups = numberOfArrayGroupsToDisplay !== null && numberOfArrayGroupsToDisplay !== undefined ? Math.min(groups, numberOfArrayGroupsToDisplay) : groups
+    const hasMoreGroups = groups > displayGroups
 
     return (
       <div
         className='object-key-val'
         {...Theme(theme, jsvRoot ? 'jsv-root' : 'objectKeyVal', {
-          paddingLeft: object_padding_left
+          paddingLeft: objectPaddingLeft
         })}
       >
         <ObjectName {...this.props} />
@@ -76,13 +79,13 @@ export default class extends React.PureComponent {
         <span>
           <VariableMeta size={src.length} {...this.props} />
         </span>
-        {[...Array(groups)].map((_, i) => (
+        {[...Array(displayGroups)].map((_, i) => (
           <div
             key={i}
             className='object-key-val array-group'
             {...Theme(theme, 'objectKeyVal', {
               marginLeft: 6,
-              paddingLeft: array_group_padding_left
+              paddingLeft: arrayGroupPaddingLeft
             })}
           >
             <span {...Theme(theme, 'brace-row')}>
@@ -110,7 +113,7 @@ export default class extends React.PureComponent {
                     parent_type='array_group'
                     theme={theme}
                     showComma={this.props.showComma}
-                    isLast={i === groups - 1}
+                    isLast={i === displayGroups - 1 && !hasMoreGroups}
                     {...rest}
                   />
                   )
@@ -141,6 +144,21 @@ export default class extends React.PureComponent {
             </span>
           </div>
         ))}
+        {hasMoreGroups && (
+          <div
+            className='object-key-val array-group-ellipsis'
+            {...Theme(theme, 'objectKeyVal', {
+              marginLeft: 6,
+              paddingLeft: arrayGroupPaddingLeft
+            })}
+          >
+            <span {...Theme(theme, 'brace-row')}>
+              <span {...Theme(theme, 'brace')} className='array-group-ellipsis'>
+                ...
+              </span>
+            </span>
+          </div>
+        )}
       </div>
     )
   }

@@ -7,7 +7,7 @@ import JsonObject from './../../../../src/js/components/DataTypes/Object'
 import JsonString from './../../../../src/js/components/DataTypes/String'
 
 describe('<ArrayGroup />', function () {
-  const large_array = new Array(15).fill('test')
+  const largeArray = new Array(15).fill('test')
 
   it('ArrayGroup mount', function () {
     const wrapper = render(
@@ -15,7 +15,7 @@ describe('<ArrayGroup />', function () {
         groupArraysAfterLength={5}
         namespace='test'
         name='test'
-        src={large_array}
+        src={largeArray}
         theme='rjv-default'
         jsvRoot={false}
         indentWidth={4}
@@ -31,7 +31,7 @@ describe('<ArrayGroup />', function () {
         groupArraysAfterLength={5}
         namespace={['test']}
         name='test'
-        src={large_array}
+        src={largeArray}
         theme='rjv-default'
         jsvRoot={false}
         indentWidth={4}
@@ -57,7 +57,7 @@ describe('<ArrayGroup />', function () {
         groupArraysAfterLength={5}
         namespace={['test']}
         name='test'
-        src={large_array}
+        src={largeArray}
         theme='rjv-default'
         jsvRoot={false}
         indentWidth={4}
@@ -72,14 +72,14 @@ describe('<ArrayGroup />', function () {
   })
 
   it('ArrayGroup paginates groups accurately', function () {
-    const test_array = new Array(17).fill('test')
+    const testArray = new Array(17).fill('test')
 
     const wrapper = mount(
       <ArrayGroup
         groupArraysAfterLength={5}
         namespace={['test']}
         name='test'
-        src={test_array}
+        src={testArray}
         theme='rjv-default'
         jsvRoot={false}
         indentWidth={4}
@@ -101,7 +101,7 @@ describe('<ArrayGroup />', function () {
         groupArraysAfterLength={5}
         namespace={['test']}
         name='test'
-        src={large_array}
+        src={largeArray}
         theme='rjv-default'
         jsvRoot
         indentWidth={4}
@@ -109,5 +109,74 @@ describe('<ArrayGroup />', function () {
     )
 
     expect(wrapper.find('.array-group').length).to.equal(3)
+  })
+
+  it('ArrayGroup limits displayed groups with numberOfArrayGroupsToDisplay', function () {
+    const testArray = new Array(25).fill('test')
+
+    const wrapper = render(
+      <ArrayGroup
+        groupArraysAfterLength={5}
+        numberOfArrayGroupsToDisplay={2}
+        namespace={['test']}
+        name='test'
+        src={testArray}
+        theme='rjv-default'
+        jsvRoot={false}
+        indentWidth={4}
+      />
+    )
+
+    // Should only display 2 groups instead of 5
+    expect(wrapper.find('.array-group').length).to.equal(2)
+
+    // Should show ellipsis
+    expect(wrapper.find('.object-key-val.array-group-ellipsis').length).to.equal(1)
+  })
+
+  it('ArrayGroup shows no ellipsis when all groups are displayed', function () {
+    const testArray = new Array(10).fill('test')
+
+    const wrapper = render(
+      <ArrayGroup
+        groupArraysAfterLength={5}
+        numberOfArrayGroupsToDisplay={3}
+        namespace={['test']}
+        name='test'
+        src={testArray}
+        theme='rjv-default'
+        jsvRoot={false}
+        indentWidth={4}
+      />
+    )
+
+    // Should display all 2 groups
+    expect(wrapper.find('.array-group').length).to.equal(2)
+
+    // Should not show ellipsis
+    expect(wrapper.find('.object-key-val.array-group-ellipsis').length).to.equal(0)
+  })
+
+  it('ArrayGroup shows all groups when numberOfArrayGroupsToDisplay is null (default behavior)', function () {
+    const testArray = new Array(25).fill('test')
+
+    const wrapper = render(
+      <ArrayGroup
+        groupArraysAfterLength={5}
+        numberOfArrayGroupsToDisplay={null}
+        namespace={['test']}
+        name='test'
+        src={testArray}
+        theme='rjv-default'
+        jsvRoot={false}
+        indentWidth={4}
+      />
+    )
+
+    // Should display all 5 groups
+    expect(wrapper.find('.array-group').length).to.equal(5)
+
+    // Should not show ellipsis
+    expect(wrapper.find('.object-key-val.array-group-ellipsis').length).to.equal(0)
   })
 })

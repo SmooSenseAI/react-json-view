@@ -69,6 +69,14 @@ export interface ReactJsonViewProps {
    */
   groupArraysAfterLength?: number
   /**
+   * When an integer value is assigned, only the specified number of array groups will be displayed.
+   * If there are more groups, an ellipsis will be shown. This works in conjunction with groupArraysAfterLength.
+   * When null (default), all groups are displayed (no change in behavior).
+   *
+   * Default: null
+   */
+  numberOfArrayGroupsToDisplay?: number | null
+  /**
    * When prop is not false, the user can copy objects and arrays to clipboard by clicking on the clipboard icon.
    * Copy callbacks are supported.
    *

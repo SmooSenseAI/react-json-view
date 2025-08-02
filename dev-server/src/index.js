@@ -232,6 +232,16 @@ ReactDom.render(
       src={getExampleJson4()}
     />
 
+    {/* Demo of numberOfArrayGroupsToDisplay */}
+    <JsonViewer
+      theme='monokai'
+      collapsed={false}
+      name='array_with_limited_groups'
+      groupArraysAfterLength={5}
+      numberOfArrayGroupsToDisplay={3}
+      src={getLargeArrayForDemo()}
+    />
+
     {/* Name as colored react component */}
     <JsonViewer
       collapsed
@@ -367,4 +377,8 @@ function getExampleArray () {
 
 function getExampleWithStringEscapeSequences () {
   return { '\\\n\t\r\f\\n': '\\\n\t\r\f\\n' }
+}
+
+function getLargeArrayForDemo () {
+  return new Array(25).fill().map((_, i) => `Item ${i + 1}`)
 }

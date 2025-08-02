@@ -240,7 +240,7 @@ class RjvObject extends React.PureComponent {
       index_offset,
       groupArraysAfterLength,
       namespace,
-      showComma,
+      showComma
     } = this.props
     const { object_type } = this.state
     const elements = []
