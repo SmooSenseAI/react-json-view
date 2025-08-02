@@ -269,6 +269,26 @@ ReactDom.render(
       name='String with special escape sequences'
       src={getExampleWithStringEscapeSequences()}
     />
+
+    {/* Demo of array of array with grouping */}
+    <JsonViewer
+      theme='tomorrow-night'
+      collapsed={false}
+      name='array_of_array'
+      groupArraysAfterLength={10}
+      numberOfArrayGroupsToDisplay={2}
+      src={getArrayOfArrayForDemo()}
+    />
+
+    {/* Demo of complex nested array with segmentation data */}
+    <JsonViewer
+      theme='dracula'
+      collapsed={false}
+      name='complex_nested_array'
+      groupArraysAfterLength={5}
+      numberOfArrayGroupsToDisplay={3}
+      src={getComplexNestedArrayForDemo()}
+    />
   </div>,
   document.getElementById('app-container')
 )
@@ -411,4 +431,98 @@ function getNestedArraysForDemo () {
       description: `Description for category ${i + 1}`
     }))
   }
+}
+
+function getArrayOfArrayForDemo () {
+  const data = [
+    [
+      150,
+      370.98,
+      150,
+      369.47,
+      174.24,
+      348.26,
+      181.06,
+      339.17,
+      184.85,
+      332.35,
+      212.88,
+      321.74,
+      217.42,
+      320.98,
+      221.97,
+      323.26,
+      227.27,
+      326.29,
+      228.79,
+      327.05,
+      237.12,
+      326.29,
+      237.88,
+      329.32,
+      237.88,
+      334.62,
+      243.18,
+      334.62,
+      243.94,
+      339.17,
+      246.97,
+      344.47,
+      263.64,
+      358.86,
+      269.7,
+      364.17,
+      271.97,
+      370.98
+    ]
+  ]
+  return Array.from({ length: 30 }, (_, i) => ({ name: `segmentation ${i}`, segmentations: data }));
+}
+
+function getComplexNestedArrayForDemo () {
+  const baseObject = {
+    "segmentation": [
+      [
+        239.97,
+        260.24,
+        222.04,
+        270.49,
+        199.84,
+        253.41,
+        213.5,
+        227.79,
+        259.62,
+        200.46,
+        274.13,
+        202.17,
+        277.55,
+        210.71,
+        249.37,
+        253.41,
+        237.41,
+        264.51,
+        242.54,
+        261.95,
+        228.87,
+        271.34
+      ]
+    ],
+    "area": 2765.1486500000005,
+    "iscrowd": 0,
+    "image_id": 558840,
+    "bbox": [
+      199.84,
+      200.46,
+      77.71,
+      70.88
+    ],
+    "category_id": 58,
+    "id": 156
+  }
+  
+  return Array.from({ length: 20 }, (_, i) => ({
+    ...baseObject,
+    id: baseObject.id + i,
+    image_id: baseObject.image_id + i
+  }));
 }
