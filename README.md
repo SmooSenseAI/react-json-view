@@ -34,6 +34,17 @@
 npm install @microlink/react-json-view --save
 ```
 
+### Server-Side Rendering (SSR) Compatibility
+
+This component is fully compatible with server-side rendering environments like Next.js. The component gracefully handles server-side rendering by:
+
+- Checking for browser environment availability before accessing DOM APIs
+- Providing fallback behavior when `document`, `navigator`, or `window` objects are not available
+- Using conditional imports for browser-specific dependencies like `react-textarea-autosize`
+- Maintaining full functionality in client-side environments
+
+The copy-to-clipboard feature and textarea editing will show warnings in the console during SSR but will work normally once the component is hydrated on the client side.
+
 ### Usage
 
 ```js

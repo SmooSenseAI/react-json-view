@@ -454,4 +454,31 @@ describe('<VariableEditor />', function () {
     const editIcon = wrapper.find('.click-to-edit-icon')
     expect(editIcon).to.have.length(1)
   })
+
+  it('VariableEditor should handle server-side rendering gracefully', function () {
+    // Mock server environment by temporarily removing window
+    const originalWindow = global.window
+    
+    delete global.window
+
+    const wrapper = shallow(
+      <VariableEditor
+        src={{ test: true }}
+        theme='rjv-default'
+        onEdit={edit => { }}
+        rjvId={rjvId}
+        variable={{
+          name: 'test',
+          value: 5,
+          type: 'int'
+        }}
+      />
+    )
+
+    // Should render without throwing errors
+    expect(wrapper.find('.variable-row')).to.have.length(1)
+
+    // Restore global window
+    global.window = originalWindow
+  })
 })

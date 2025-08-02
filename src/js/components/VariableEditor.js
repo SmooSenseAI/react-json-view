@@ -1,5 +1,9 @@
 import React from 'react'
-import AutosizeTextarea from 'react-textarea-autosize'
+// Conditional import for SSR compatibility
+let AutosizeTextarea = null
+if (typeof window !== 'undefined') {
+  AutosizeTextarea = require('react-textarea-autosize').default
+}
 
 import { escapeString } from './../helpers/util'
 import dispatcher from './../helpers/dispatcher'
@@ -256,9 +260,12 @@ class VariableEditor extends React.PureComponent {
     const { keyModifier, selectOnFocus, theme } = this.props
     const { editValue } = this.state
 
+    // Fallback to regular textarea if AutosizeTextarea is not available (SSR)
+    const TextareaComponent = AutosizeTextarea || 'textarea'
+
     return (
       <div>
-        <AutosizeTextarea
+        <TextareaComponent
           type='text'
           ref={input => {
             if (input) {

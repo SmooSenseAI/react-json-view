@@ -14,6 +14,10 @@ export default class extends React.PureComponent {
     this.state = {
       copied: false
     }
+    
+    // Bind methods to preserve 'this' context
+    this.handleCopy = this.handleCopy.bind(this)
+    this.copyToClipboardFallback = this.copyToClipboardFallback.bind(this)
   }
 
   copiedTimer = null
@@ -25,7 +29,13 @@ export default class extends React.PureComponent {
     }
   }
 
-  copyToClipboardFallback = textToCopy => {
+  copyToClipboardFallback (textToCopy) {
+    // Check if we're in a browser environment
+    if (typeof document === 'undefined') {
+      console.warn('Copy to clipboard not available in server-side rendering')
+      return
+    }
+
     const textArea = document.createElement('textarea')
     textArea.value = textToCopy
     document.body.appendChild(textArea)
@@ -34,10 +44,16 @@ export default class extends React.PureComponent {
     document.body.removeChild(textArea)
   }
 
-  handleCopy = () => {
+  handleCopy () {
     const { clickCallback, src, namespace } = this.props
 
     const textToCopy = JSON.stringify(this.clipboardValue(src), null, '  ')
+
+    // Check if we're in a browser environment
+    if (typeof navigator === 'undefined') {
+      console.warn('Copy to clipboard not available in server-side rendering')
+      return
+    }
 
     if (navigator.clipboard) {
       navigator.clipboard.writeText(textToCopy).catch(() => {
@@ -68,7 +84,7 @@ export default class extends React.PureComponent {
     })
   }
 
-  getClippyIcon = () => {
+  getClippyIcon () {
     const { theme } = this.props
 
     if (this.state.copied) {
@@ -83,7 +99,7 @@ export default class extends React.PureComponent {
     return <Clippy className='copy-icon' {...Theme(theme, 'copy-icon')} />
   }
 
-  clipboardValue = value => {
+  clipboardValue (value) {
     const type = toType(value)
     switch (type) {
       case 'function':
