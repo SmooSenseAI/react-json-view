@@ -466,4 +466,32 @@ describe('<JsonObject />', function () {
     )
     expect(wrapper.find('span').someWhere(node => node.text() === ',')).to.be.false
   })
+
+  it('Object with nested arrays respects numberOfArrayGroupsToDisplay', function () {
+    let src = {
+      nestedArray: new Array(25).fill('test'),
+      otherProp: 'value'
+    }
+
+    const wrapper = render(
+      <JsonObject
+        src={src}
+        theme='rjv-default'
+        namespace={['root']}
+        rjvId={rjvId}
+        groupArraysAfterLength={5}
+        numberOfArrayGroupsToDisplay={2}
+        collapsed={false}
+        indentWidth={1}
+        depth={1}
+        type='object'
+      />
+    )
+
+    // Should only display 2 groups for the nested array
+    expect(wrapper.find('.array-group').length).to.equal(2)
+
+    // Should show ellipsis for the nested array
+    expect(wrapper.find('.object-key-val.array-group-ellipsis').length).to.equal(1)
+  })
 })

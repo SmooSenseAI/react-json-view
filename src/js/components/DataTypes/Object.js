@@ -239,6 +239,7 @@ class RjvObject extends React.PureComponent {
       parent_type,
       index_offset,
       groupArraysAfterLength,
+      numberOfArrayGroupsToDisplay,
       namespace,
       showComma
     } = this.props
@@ -269,6 +270,7 @@ class RjvObject extends React.PureComponent {
             parent_type={object_type}
             isLast={isLast}
             showComma={showComma}
+            numberOfArrayGroupsToDisplay={numberOfArrayGroupsToDisplay}
             {...props}
           />
         )
@@ -293,6 +295,7 @@ class RjvObject extends React.PureComponent {
             parent_type={object_type}
             isLast={isLast}
             showComma={showComma}
+            numberOfArrayGroupsToDisplay={numberOfArrayGroupsToDisplay}
             {...props}
           />
         )

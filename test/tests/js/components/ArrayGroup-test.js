@@ -179,4 +179,6 @@ describe('<ArrayGroup />', function () {
     // Should not show ellipsis
     expect(wrapper.find('.object-key-val.array-group-ellipsis').length).to.equal(0)
   })
+
+
 })

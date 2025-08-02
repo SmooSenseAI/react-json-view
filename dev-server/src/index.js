@@ -242,6 +242,16 @@ ReactDom.render(
       src={getLargeArrayForDemo()}
     />
 
+    {/* Demo of numberOfArrayGroupsToDisplay with nested objects */}
+    <JsonViewer
+      theme='apathy:inverted'
+      collapsed={false}
+      name='nested_arrays_with_limited_groups'
+      groupArraysAfterLength={5}
+      numberOfArrayGroupsToDisplay={2}
+      src={getNestedArraysForDemo()}
+    />
+
     {/* Name as colored react component */}
     <JsonViewer
       collapsed
@@ -381,4 +391,24 @@ function getExampleWithStringEscapeSequences () {
 
 function getLargeArrayForDemo () {
   return new Array(25).fill().map((_, i) => `Item ${i + 1}`)
+}
+
+function getNestedArraysForDemo () {
+  return {
+    users: new Array(25).fill().map((_, i) => ({
+      id: i + 1,
+      name: `User ${i + 1}`,
+      email: `user${i + 1}@example.com`
+    })),
+    products: new Array(25).fill().map((_, i) => ({
+      id: i + 1,
+      name: `Product ${i + 1}`,
+      price: Math.random() * 100
+    })),
+    categories: new Array(25).fill().map((_, i) => ({
+      id: i + 1,
+      name: `Category ${i + 1}`,
+      description: `Description for category ${i + 1}`
+    }))
+  }
 }
