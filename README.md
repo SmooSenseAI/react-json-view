@@ -5,9 +5,9 @@
   <br>
   react-json-view
   <br>
-  <a href="https://www.npmjs.com/package/@microlink/react-json-view"><img src="https://img.shields.io/npm/v/%40microlink%2Freact-json-view.svg" alt="npm version"></a>
-  <a href="https://github.com/microlinkhq/react-json-view/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/%40microlink%2Freact-json-view.svg" alt="npm license"></a>
-  <a href="https://github.com/microlinkhq/react-json-view/actions/workflows/main.yml?query=branch%3Amaster"><img src="https://github.com/microlinkhq/react-json-view/workflows/test/badge.svg" alt="Build Status"></a>
+  <a href="https://www.npmjs.com/package/@smoosense/react-json-view"><img src="https://img.shields.io/npm/v/%40smoosense%2Freact-json-view.svg" alt="npm version"></a>
+  <a href="https://github.com/SmooSenseAI/react-json-view/blob/master/LICENSE"><img src="https://img.shields.io/npm/l/%40smoosense%2Freact-json-view.svg" alt="npm license"></a>
+  <a href="https://github.com/SmooSenseAI/react-json-view/actions/workflows/main.yml?query=branch%3Amaster"><img src="https://github.com/SmooSenseAI/react-json-view/workflows/test/badge.svg" alt="Build Status"></a>
   <br>
 </h1>
 
@@ -31,13 +31,13 @@
 ### Installation
 
 ```shell
-npm install @microlink/react-json-view --save
+npm install @smoosense/react-json-view --save
 ```
 
 ### Usage
 
 ```js
-import ReactJsonView from '@microlink/react-json-view'
+import ReactJsonView from '@smoosense/react-json-view'
 
 <ReactJsonView
   src={{
@@ -164,11 +164,9 @@ Check [react-json-view.microlink.io](https://react-json-view.microlink.io/) to s
 
 **rjv** supports any base-16 theme. You can supply your own base-16 theme object.
 
-To better understand custom themes, take a look at [my example implementation](https://github.com/microlinkhq/react-json-view/blob/7c154b9a7d83ea89dce2c171ebdf4d163ff49233/dev-server/src/index.js#L135) and the [base-16 theme styling guidelines](https://github.com/chriskempson/base16/blob/master/styling.md).
+To better understand custom themes, take a look at [my example implementation](https://github.com/SmooSenseAI/react-json-view/blob/7c154b9a7d83ea89dce2c171ebdf4d163ff49233/dev-server/src/index.js#L135) and the [base-16 theme styling guidelines](https://github.com/chriskempson/base16/blob/master/styling.md).
 
 ## License
 
-**react-json-view** © [microlink.io](https://microlink.io), released under the [MIT](https://github.com/microlinkhq/cards/blob/master/LICENSE.md) License.<br>
-Authored by [Mac Gainor](https://github.com/mac-s-g) and maintained by [Kiko Beats](https://kikobeats.com) with help from [contributors](https://github.com/microlinkhq/cards/contributors).
-
-> [microlink.io](https://microlink.io) · GitHub [microlink.io](https://github.com/microlinkhq) · X [@microlinkhq](https://x.com/microlinkhq)
+**react-json-view** © [SmooSenseAI](https://github.com/SmooSenseAI), released under the [MIT](https://github.com/SmooSenseAI/react-json-view/blob/master/LICENSE) License.<br>
+Originally authored by [Mac Gainor](https://github.com/mac-s-g) and maintained by [Kiko Beats](https://kikobeats.com). Forked and maintained by [SmooSenseAI](https://github.com/SmooSenseAI) with help from [contributors](https://github.com/SmooSenseAI/react-json-view/contributors).
